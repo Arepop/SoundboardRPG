@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="static/js/materialize.min.js">
+    </script>
+    <script src="static/js/myscripts.js"></script>
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="static/css/materialize.min.css" media="screen,projection" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo right">SoundBarRPG</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+                <li><a href="/board/create.html">New board</a></li>
+                <li><a href="/upload.html">Add Track(s)</a></li>
+                <li><a href="/sound/add.html">Add Sound(s)</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col s8">
+            <div class="row">
+            <div id="add_button" class="col s3">
+            <div style="min-width: 200px;"><a class="btn-floating btn-large darken-1" style="margin: 40%;" onclick="openFileSelectionModal();">
+                <i class="large material-icons">add</i>
+              </a></div>
+            </div>
+        </div>
+        </div>
+        <div class="col s4">
+            <div class="collection">
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+                <a class="collection-item">Alvin</a>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+<div id="modal-songs-list" class="modal">
+    <div class="modal-content">
+      <h4>Select Song</h4>
+      <input id="selected-sound-title" class="text-input", placeholder="Sound Title">
+      <div class="collection" id="ul-songs-list"></div>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat" onclick="addSoundToButton();">Add</a>
+</div>
+<div id="myAudio">
+    
+</div>
+</html>
