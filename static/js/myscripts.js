@@ -74,6 +74,39 @@ function openFileSelectionModal() {
     instance.open();
 }
 
+function fillTabsWithTracks() {
+    const playset = document.getElementById("track_ul");
+    const tracks = document.getElementById("track_div")
+    playset.innerHTML = "";
+    fetch('/get_tracks')
+        .then((response) => response.json())
+        .then((user) => {
+            for (const [p_name, t_names] of Object.entries(user.tracks)) {
+                var elem = document.createElement("li");
+                var a_elem = document.createElement("a");
+                var t_div = document.createElement('div')
+                t_div.classList.add('collection')
+                t_div.id = `div-tracks-${p_name}`
+                elem.classList.add("tab");
+                a_elem.setAttribute("href", `#div-tracks-${p_name}`)
+                a_elem.append(`${p_name}`);
+                elem.append(a_elem)
+                playset.appendChild(elem);
+                for (const t_name of t_names) {
+                    var t_elem = document.createElement("li");
+                    t_elem.id = `li-track-${t_name}`;
+                    t_elem.classList.add('collection-item')
+                    t_elem.append(t_name)
+                    t_div.append(t_elem)
+                    tracks.appendChild(t_div)
+                }
+            } 
+        });
+}
+
+// TODO: Adding tracks to playset, adding what is clicked/played/stoped/paused, 
+// autostop old when new is played
+
 function markSelectedSound(elem_id) {
     const parent_elem = document.getElementById("ul-songs-list")
     const elem = document.getElementById(elem_id);
@@ -133,3 +166,11 @@ function addSoundToButton() {
     widget.insertBefore(elem);
 
 }
+
+$(document).ready(function(){
+    $('.tabs').tabs();
+  });
+
+$(window).on('load', function() {
+    fillTabsWithTracks();
+});

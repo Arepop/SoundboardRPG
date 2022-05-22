@@ -18,4 +18,19 @@ def get_sounds():
     else:
         return "Not found", 404
 
+@app.route("/get_tracks", methods=["GET"])
+def get_tracks():
+    tracks = {"tracks": {}}
+    length=0
+    static = Path(app.static_folder) / 'tracks'
+    for playset in [path for path in static.iterdir() if path.is_dir()]:
+        tracks["tracks"][playset.name] = []
+        length += 1
+        for track in [track.name for track in playset.glob("*")]:
+            tracks["tracks"][playset.name].append(track)
+
+    # tracks['length'] = length
+    if request.method == "GET":
+        return jsonify(tracks)
+
 app.run(host="0.0.0.0")
